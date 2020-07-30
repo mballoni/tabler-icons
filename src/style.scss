@@ -27,6 +27,10 @@ body {
   color: $dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media print {
+    color: #000;
+  }
 }
 
 a {
@@ -44,6 +48,10 @@ a {
   padding: 1rem;
 
   @media (max-width: #{$breakpoint}) {
+    padding: 0;
+  }
+
+  @media print {
     padding: 0;
   }
 }
@@ -77,10 +85,18 @@ a {
   padding: 2rem;
   background: #ffff;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 1px 1px rgba(0, 0, 0, .1);
+  page-break-before: always;
+  margin-bottom: 2rem;
 
   @media (max-width: #{$breakpoint}) {
     padding: .5rem;
     box-shadow: none;
+  }
+
+  @media print {
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: 0;
   }
 }
 
@@ -178,6 +194,10 @@ a {
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
+
+  &.active {
+    background: #f0f0f0;
+  }
 
   @at-root a#{&}:hover {
     opacity: .75;
@@ -374,4 +394,37 @@ Components
 
 .td-1 {
   width: 1%;
+}
+
+$border-color: #e0e0e0;
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons {
+  display: flex;
+  margin-right: .5rem;
+  margin-bottom: .5rem;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+
+  .button + .button {
+    border-left: 1px solid $border-color;
+  }
+}
+
+.button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: mix($dark, #fff, 75%);
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 }
